@@ -1,7 +1,6 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Game {
 
@@ -17,7 +16,7 @@ public class Game {
 	private int mapId;
 	private int spell1;
 	private int spell2;
-	private ArrayList<RawStat> statistics;
+	private RawStats stats;
 	private String subType;
 	private int teamId;
 	
@@ -93,11 +92,16 @@ public class Game {
 	public void setSpell2(int spell2) {
 		this.spell2 = spell2;
 	}
-	public ArrayList<RawStat> getStatistics() {
-		return statistics;
+	
+	/**
+	 * GET THE FUCKING RAW STATS FOR THIS GAME
+	 * @return THE FUCKING RAW STATS
+	 */
+	public RawStats getStats() {
+		return stats;
 	}
-	public void setStatistics(ArrayList<RawStat> statistics) {
-		this.statistics = statistics;
+	public void setStats(RawStats stats) {
+		this.stats = stats;
 	}
 	public String getSubType() {
 		return subType;

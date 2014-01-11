@@ -7,7 +7,7 @@ import classes.Game;
 import classes.League;
 import classes.MasteryPage;
 import classes.MasteryPages;
-import classes.RawStat;
+import classes.RawStats;
 import classes.RecentGames;
 import classes.RunePage;
 import classes.RunePages;
@@ -17,7 +17,7 @@ import classes.Team;
 
 public class LeagueAPIExample {
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
 
                 // Retrieve a LeagueAPI object with your api key for a specific server
                 LeagueAPI api = new LeagueAPI("5fb6a70f-d3d7-4ee1-8285-c73e49dd4777", LeagueAPI.Region.NA);
@@ -40,15 +40,18 @@ public class LeagueAPIExample {
                 
                 // Get recent games of summoner
                 RecentGames recentGames = api.getRecentGames(summoner.getId());
-
+                
                 // Print information of recent games
                 if (recentGames != null)
                         for (Game game : recentGames.getGames()) {
                                 System.out.println(game.getGameType() + " " + game.getSubType());
-                                System.out.println("-----------------");
-                                for (RawStat rawStat : game.getStatistics()) {
-                                        System.out.println(rawStat.getName() + " - " + rawStat.getValue());
-                                }
+                                System.out.println("-------------------------------");
+                                RawStats rawStats = game.getStats();
+                                System.out.println("Victory?: " + rawStats.isWin());
+                                System.out.println("Level: " + rawStats.getLevel());
+                                System.out.println(rawStats.getChampionsKilled() + " Kills");
+                                System.out.println(rawStats.getNumDeaths() + " Deaths");
+                                System.out.println(rawStats.getAssits() + " Assists");
                                 System.out.println();
                         }
 

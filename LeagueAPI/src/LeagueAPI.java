@@ -35,11 +35,13 @@ public class LeagueAPI {
 	private String apiKey;
 	private static String URL_V1;
 	private static String URL_V2;
+	private static String URL_V3;
 	
 	public LeagueAPI(String apiKey, Region region) {
 		this.apiKey = apiKey;
 		LeagueAPI.URL_V1 = "https://prod.api.pvp.net/api/lol/" + region.name().toLowerCase() + "/v1.1/";
 		LeagueAPI.URL_V2 = "http://prod.api.pvp.net/api/" + region.name().toLowerCase() + "/v2.1/";
+		LeagueAPI.URL_V3 = "http://prod.api.pvp.net/api/lol/" + region.name().toLowerCase() + "/v1.3/";
 	}
 	
 	/**
@@ -83,7 +85,7 @@ public class LeagueAPI {
 	 * @return a RecentGames
 	 */
     public RecentGames getRecentGames(Long summonerId) {
-        String jsonString = LeagueAPI.request(URL_V1 + "game/by-summoner/" + summonerId + "/recent?api_key=" + this.apiKey);
+        String jsonString = LeagueAPI.request(URL_V3 + "game/by-summoner/" + summonerId + "/recent?api_key=" + this.apiKey);
         RecentGames recentGames = new Gson().fromJson(jsonString, RecentGames.class);
 
         return recentGames;
